@@ -1,5 +1,5 @@
 <div class="container">
-  <form #form="ngForm" (ngSubmit)="handleSubmit()">
+  <form #form="ngForm" (ngSubmit)="handleSubmit(form)">
     <div class="form-group">
       <label
         for="name"
@@ -15,6 +15,7 @@
         [(ngModel)]="userSettings.name"
         [ngClass]="(nameField.invalid && nameField.touched) || (form.invalid && form.submitted) ? 'field-error': null"
         #nameField="ngModel"
+        (blur)="handleBlur(nameField)"
         required minlength="3">
       <p
         *ngIf="(nameField.invalid && nameField.touched) || (form.invalid && form.submitted)"

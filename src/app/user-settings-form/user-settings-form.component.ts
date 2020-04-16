@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Form} from '@angular/forms';
+import {Form, NgForm, NgModel} from '@angular/forms';
 import {UserSettings} from '../data/user-settings';
 
 @Component({
@@ -24,7 +24,12 @@ export class UserSettingsFormComponent implements OnInit {
 
   }
 
-  handleSubmit(): void {
-    console.log(this.form);
+  handleSubmit(form: NgForm): void {
+    console.log(form);
+  }
+
+  // Can obtain the control itself
+  handleBlur(field: NgModel) {
+    console.log(field);
   }
 }
