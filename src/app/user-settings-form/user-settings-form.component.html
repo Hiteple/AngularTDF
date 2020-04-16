@@ -1,9 +1,26 @@
 <div class="container">
   <form #form="ngForm" (ngSubmit)="handleSubmit()">
     <div class="form-group">
-      <label for="name" [ngStyle]="{'color': (nameField.invalid && nameField.touched) || (form.invalid && form.submitted) ? 'red' : 'black'}">Name</label>
-      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" [(ngModel)]="userSettings.name" #nameField="ngModel" required>
-      <p *ngIf="(nameField.invalid && nameField.touched) || (form.invalid && form.submitted)" class="text-danger">Please enter a name</p>
+      <label
+        for="name"
+        [ngStyle]="{'color': (nameField.invalid && nameField.touched) || (form.invalid && form.submitted) ? 'red' : 'black'}"
+        >Name
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        aria-describedby="emailHelp"
+        name="name"
+        [(ngModel)]="userSettings.name"
+        [ngClass]="(nameField.invalid && nameField.touched) || (form.invalid && form.submitted) ? 'field-error': null"
+        #nameField="ngModel"
+        required minlength="3">
+      <p
+        *ngIf="(nameField.invalid && nameField.touched) || (form.invalid && form.submitted)"
+        class="text-danger"
+        >Please enter a valid name (minimum 3 characters)
+      </p>
     </div>
     <div class="form-check form-group">
       <input class="form-check-input" type="checkbox" id="offers" name="offers" [(ngModel)]="userSettings.offers">
