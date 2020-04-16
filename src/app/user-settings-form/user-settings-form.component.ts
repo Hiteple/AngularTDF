@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Form, NgForm, NgModel} from '@angular/forms';
 import {UserSettings} from '../data/user-settings';
+import {UserDataService} from '../data/user-data.service';
 
 @Component({
   selector: 'app-user-settings-form',
@@ -18,7 +19,8 @@ export class UserSettingsFormComponent implements OnInit {
   };
 
   userSettings: UserSettings = {...this.originalUserSettings};
-  constructor() { }
+
+  constructor(private userDataService: UserDataService) { }
 
   ngOnInit(): void {
 
@@ -26,6 +28,10 @@ export class UserSettingsFormComponent implements OnInit {
 
   handleSubmit(form: NgForm): void {
     console.log(form);
+    this.userDataService.postUserSettings(this.userSettings).subscribe(
+      (result) => console.log('Logging the result', result),
+      (error) => console.log('Logging out potential error', error)
+    );
   }
 
   // Can obtain the control itself
