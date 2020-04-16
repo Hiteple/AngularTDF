@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AngularTDF"
+    }
+  },
+  "defaultProject": "AngularTDF",
+  "cli": {
+    "analytics": "8b5fbcc6-5dcf-4e5b-b58e-7a33e4051419"
+  }
 }
