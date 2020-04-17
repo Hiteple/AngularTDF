@@ -14,4 +14,8 @@ export class UserDataService {
     return this.http.post<UserSettings>('https://putsreq.com/mMDYa4uxFfCggy2suEYR', userSettings);
     // return of(userSettings);
   }
+
+  getSubscriptionTypes(): Observable<string[]> {
+    return of(['Monthly', 'Annual', 'Lifetime']);
+  }
 }

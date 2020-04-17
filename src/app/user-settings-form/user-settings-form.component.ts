@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Form, NgForm, NgModel} from '@angular/forms';
 import {UserSettings} from '../data/user-settings';
 import {UserDataService} from '../data/user-data.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-user-settings-form',
@@ -10,6 +11,7 @@ import {UserDataService} from '../data/user-data.service';
 })
 export class UserSettingsFormComponent implements OnInit {
   @ViewChild('form') form: Form;
+  subscriptionTypes: Array<string>;
   originalUserSettings: UserSettings = {
     name: '',
     offers: true,
@@ -23,7 +25,10 @@ export class UserSettingsFormComponent implements OnInit {
   constructor(private userDataService: UserDataService) { }
 
   ngOnInit(): void {
-
+    this.userDataService.getSubscriptionTypes().subscribe(
+      (arr) => this.subscriptionTypes = arr,
+      (err) => console.log(err)
+    );
   }
 
   handleSubmit(form: NgForm): void {
